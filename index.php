@@ -1,5 +1,17 @@
 <?php
-// Load the controller and invoke the default action
-require_once 'Controllers/HelloController.php';
-$controller = new HelloController();
-$controller->sayHello();
+require_once 'Controllers/TaskController.php';
+
+$controller = new TaskController();
+
+// Route handling
+$action = $_GET['action'] ?? 'list'; // Default action is 'list'
+
+if ($action === 'list') {
+    $controller->listTasks();
+} elseif ($action === 'add') {
+    $controller->addTask();
+} elseif ($action === 'done') {
+    $controller->markAsDone();
+} else {
+    echo "Invalid action!";
+}
